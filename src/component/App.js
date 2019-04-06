@@ -61,17 +61,21 @@ class App extends Component {
     render() {
 
         const error = this.state.error;
+        const responseError = this.state.weatherResult.cod;
         let result = '';
         if (error) {
             result = <CustomError
                 message={'Todos los campos son obligatorios'}
+            />
+        } else if (responseError){
+            result = <CustomError
+                message={'Ciudad buscada no encontrada'}
             />
         } else {
             result = <Weather
                 weather={this.state.weatherResult}
             />
         }
-
         return (
             <div className="App">
                 <Header
