@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 
 class Form extends Component{
-
     // crear refs
     cityRef = React.createRef();
     countryRef = React.createRef();
@@ -66,4 +66,7 @@ class Form extends Component{
     }
 }
 
+Form.propTypes = {
+    weatherSearched: PropTypes.func.isRequired
+};
 export default Form;
