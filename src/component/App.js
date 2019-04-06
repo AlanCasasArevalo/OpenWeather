@@ -67,7 +67,7 @@ class App extends Component {
             result = <CustomError
                 message={'Todos los campos son obligatorios'}
             />
-        } else if (responseError){
+        } else if (responseError === '404'){
             result = <CustomError
                 message={'Ciudad buscada no encontrada'}
             />
