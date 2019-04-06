@@ -5,7 +5,8 @@ import CustomError from "./CustomError";
 
 class App extends Component {
     state = {
-        error: ''
+        error: '',
+        weather: {}
     };
 
     componentDidMount() {
@@ -14,10 +15,23 @@ class App extends Component {
         })
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        this.getWeatherFromCity();
+    }
+
+    getWeatherFromCity = () =>{
+        const { citySearched, countrySearched } = this.state.weather;
+        const apiKey = "099dffafea76d8daba237d2baeb65201";
+        let url = `https://api.openweathermap.org/data/2.5/weather?q=${citySearched + `,` + countrySearched}&appid=${apiKey}`
+
+        console.log("URL A ATACAR", url);
+    }
+
     weatherSearched = response => {
         if (response) {
             this.setState({
-                error: false
+                error: false,
+                weather: response
             })
         } else {
             this.setState({
