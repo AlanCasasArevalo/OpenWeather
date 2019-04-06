@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 
 const Header = (props) => {
     const title = props.title
@@ -6,7 +6,7 @@ const Header = (props) => {
         <div>
             <nav>
                 <div className="nav-wrapper light-blue darken-2">
-                    <a className="brand-logo"> {title} </a>
+                    <a href="" className="brand-logo"> {title} </a>
                 </div>
             </nav>
         </div>

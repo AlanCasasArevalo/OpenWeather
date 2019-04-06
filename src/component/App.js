@@ -2,11 +2,13 @@ import React, {Component} from 'react';
 import Header from "./Header";
 import Form from "./Form";
 import CustomError from "./CustomError";
+import Weather from "./Weather";
 
 class App extends Component {
     state = {
-        error: '',
-        weather: {}
+        error: false,
+        weather: {},
+        weatherResult: {}
     };
 
     componentDidMount() {
@@ -16,16 +18,32 @@ class App extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        this.getWeatherFromCity();
+        if (prevState.weather === this.state.weather){
+
+        } else {
+            this.getCityFromOpenWeather();
+        }
     }
 
-    getWeatherFromCity = () =>{
+    getCityFromOpenWeather = () =>{
         const { citySearched, countrySearched } = this.state.weather;
+        if (!citySearched || !countrySearched) return null;
         const apiKey = "099dffafea76d8daba237d2baeb65201";
         let url = `https://api.openweathermap.org/data/2.5/weather?q=${citySearched + `,` + countrySearched}&appid=${apiKey}`
 
-        console.log("URL A ATACAR", url);
-    }
+        fetch(url)
+            .then(response => {
+                return response.json()
+            })
+            .then(dataFromResponse => {
+                this.setState({
+                    weatherResult : dataFromResponse
+                })
+            })
+            .catch( error => {
+                console.log("", error);
+            })
+    };
 
     weatherSearched = response => {
         if (response) {
@@ -49,7 +67,6 @@ class App extends Component {
                 message={'Todos los campos son obligatorios'}
             />
         } else {
-
         }
 
         return (

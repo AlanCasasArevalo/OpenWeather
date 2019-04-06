@@ -23,6 +23,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "alias-quokka-plugin": "^0.1.0"
+    "alias-quokka-plugin": "^0.1.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0"
   }
 }
