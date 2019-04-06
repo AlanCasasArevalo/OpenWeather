@@ -67,6 +67,9 @@ class App extends Component {
                 message={'Todos los campos son obligatorios'}
             />
         } else {
+            result = <Weather
+                weather={this.state.weatherResult}
+            />
         }
 
         return (
